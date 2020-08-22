@@ -8,13 +8,15 @@ import {
 
 class Login extends Component {
   hadlePress = () => {
+    // Leendo parametro pasado en la navegacion
+    // console.log(this.props.route.params.name)
     this.props.navigation.navigate('About')
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>Login</Text>
+        <Text>Login - Hola {this.props.route.params.name}</Text>
         <Button
           title='Ir a About'
           onPress={this.hadlePress}

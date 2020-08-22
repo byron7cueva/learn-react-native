@@ -12,10 +12,23 @@ const Stack = createStackNavigator()
  const App: () => React$Node = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        initialRouteName='Login'
+        screenOptions={{
+          title: 'Titulo generico'
+        }}
+      >
         <Stack.Screen name='Home' component={Home} />
         <Stack.Screen name='About' component={About} />
-        <Stack.Screen name='Login' component={Login} />
+        <Stack.Screen 
+          name='Login'
+          options={{
+            title: 'Pantalla Login'
+          }}
+          component={Login}
+          key='login'
+          initialParams={{ name: 'Byron' }}
+        />
         <Stack.Screen name='Profile' component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
