@@ -1,21 +1,22 @@
-import React, { Component } from 'react';
-import {
-  Text
-} from 'react-native';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
-const Stack = createStackNavigator()
+import { Home } from './src/screens/home'
+import { Login } from './src/screens/login'
+import { About } from './src/screens/about'
+import { Profile } from './src/screens/profile'
 
-const HomeScream = () => (
-  <Text>Hola Mundo desde ract navigation</Text>
-)
+const Stack = createStackNavigator()
 
  const App: () => React$Node = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name='Home' component={HomeScream} />
+        <Stack.Screen name='Home' component={Home} />
+        <Stack.Screen name='About' component={About} />
+        <Stack.Screen name='Login' component={Login} />
+        <Stack.Screen name='Profile' component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
   );
