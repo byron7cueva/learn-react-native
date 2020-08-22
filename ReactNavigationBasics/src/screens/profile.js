@@ -6,6 +6,8 @@ import {
   StyleSheet
 } from 'react-native'
 
+import { Name } from '../profile/components/name'
+
 class Profile extends Component {
   componentDidMount() {
     // Cambiando propiedad de la navegacion desde el screen
@@ -38,6 +40,7 @@ class Profile extends Component {
           title='Cambiar nombre'
           onPress={this.handleChangeParams}
         />
+        <Name />
       </View>
     )
   }
