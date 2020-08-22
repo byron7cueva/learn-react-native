@@ -7,8 +7,23 @@ import {
 } from 'react-native'
 
 class Profile extends Component {
+  componentDidMount() {
+    // Cambiando propiedad de la navegacion desde el screen
+    /*this.props.navigation.setOptions({
+      // Cambiando el titulo del header pr el paramtro recibido
+      title: this.props.route.params.name
+    })*/
+  }
+
   handlePress = () => {
     this.props.navigation.navigate('Home')
+  }
+
+  handleChangeParams = () => {
+    // Cmabiando parametros
+    this.props.navigation.setParams({
+      name: 'Luis'
+    })
   }
 
   render() {
@@ -18,6 +33,10 @@ class Profile extends Component {
         <Button
           title='Ir a Home'
           onPress={this.handlePress}
+        />
+        <Button
+          title='Cambiar nombre'
+          onPress={this.handleChangeParams}
         />
       </View>
     )

@@ -49,7 +49,15 @@ return (
         key='login'
         initialParams={{ name: 'Byron' }}
       />
-      <Stack.Screen name='Profile' component={Profile} />
+      <Stack.Screen
+        name='Profile'
+        component={Profile}
+        options={
+          ({ route }) => ({
+            title: `${route.params.name} ${route.params?.age ?? '32'}`
+          })
+        }
+      />
     </Stack.Navigator>
   </NavigationContainer>
 );

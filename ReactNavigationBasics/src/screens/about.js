@@ -8,7 +8,10 @@ import {
 
 class About extends Component {
   handlePress = () => {
-    this.props.navigation.navigate('Profile')
+    // navigate(name, parametros)
+    this.props.navigation.navigate('Profile', {
+      name: 'Byron Cueva'
+    })
   }
 
   render() {
