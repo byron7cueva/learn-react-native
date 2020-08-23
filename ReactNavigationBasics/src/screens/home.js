@@ -6,12 +6,18 @@ import {
   Button,
   StyleSheet
 } from 'react-native'
+import { StackActions } from '@react-navigation/native'
 
 class Home extends Component {
   handlePress = () => {
     // Navegando a otra pantalla
     // Al ser un screen se inyecta la propiedad navigation
-    this.props.navigation.navigate('Login')
+    // Solo navega
+    //this.props.navigation.navigate('Login')
+    // Agraga al stack si la pantalla ya existe crea otra y le pone en el stack
+    this.props.navigation.dispatch(
+      StackActions.push('Login')
+    )
   }
 
   render() {
