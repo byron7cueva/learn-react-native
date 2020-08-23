@@ -5,12 +5,18 @@ import {
   Button,
   StyleSheet
 } from 'react-native'
+import { NavigationActions } from '@react-navigation/compat'
 
 class Login extends Component {
   hadlePress = () => {
     // Leendo parametro pasado en la navegacion
     // console.log(this.props.route.params.name)
-    this.props.navigation.navigate('About')
+    // this.props.navigation.navigate('About')
+    this.props.navigation.dispatch(
+      NavigationActions.navigate({
+        routeName: 'About'
+      })
+    )
   }
 
   render() {
