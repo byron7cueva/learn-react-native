@@ -1,5 +1,6 @@
 # React Native
 
+* Es un framework para crear aplicaciones nativas usando React
 * Permite construir aplicaciones nativas con JavaScript y React, para Android y iOS.
 
 
