@@ -3,6 +3,14 @@
 * Es un framework para crear aplicaciones nativas usando React
 * Permite construir aplicaciones nativas con JavaScript y React, para Android y iOS.
 
+![image-20200917141253434](./assets/react_native.png)
+
+## Ventajas
+
+* React
+* Hot reload
+* Debuggin. Flypper
+* Multiplataforma
 
 ## Lista de componentes que ofrece React Native.
 
@@ -47,9 +55,11 @@ RCTNetworking: Para la transmision de datos para que se pueda entender desde jav
 
 Para crear un nombre del proyecto se debe ejecutar el siguiente comando. El nombre no debe tener guiones medios.
 
-´´´bash
+```bash
 npx react-native init AwesomeProject
-´´´
+```
+
+
 
 ## Herramientas
 
