@@ -6,6 +6,7 @@ import {
   SectionList,
   FlatList,
   Pressable,
+  Alert,
   StyleSheet,
 } from 'react-native';
 
@@ -64,7 +65,10 @@ class CoinDetailScreen extends Component {
       },
     } = this.props;
     this.props.navigation.setOptions({title: coin.symbol});
-    this.setState({coin});
+    this.setState({coin}, () => {
+      // Se llama que verifique si es favorito despues que se setee el estado
+      this.getFavorite();
+    });
     this.getMarkets(coin.id);
   }
 
@@ -86,7 +90,36 @@ class CoinDetailScreen extends Component {
   }
 
   removeFavorite() {
-    this.setState({isFavorite: false});
+    Alert.alert('Remove favorite', 'Are you sure?', [
+      {
+        text: 'Cancel',
+        onPress: () => {},
+        style: 'cancel',
+      },
+      {
+        text: 'Remove',
+        onPress: async () => {
+          const key = `favorite-${this.state.coin.id}`;
+          const removed = await Storage.instance.remove(key);
+          if (removed) {
+            this.setState({isFavorite: false});
+          }
+        },
+        style: 'destructive',
+      },
+    ]);
+  }
+
+  async getFavorite() {
+    const key = `favorite-${this.state.coin.id}`;
+    try {
+      const favStr = await Storage.instance.get(key);
+      if (favStr !== null) {
+        this.setState({isFavorite: true});
+      }
+    } catch (err) {
+      console.log('get favorite err', err);
+    }
   }
 
   render() {
