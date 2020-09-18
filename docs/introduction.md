@@ -59,6 +59,13 @@ Para crear un nombre del proyecto se debe ejecutar el siguiente comando. El nomb
 npx react-native init AwesomeProject
 ```
 
+En IOS se debe además hacer los siguiente:
+
+```bash
+cd ios
+pod install
+```
+
 
 
 ## Herramientas
