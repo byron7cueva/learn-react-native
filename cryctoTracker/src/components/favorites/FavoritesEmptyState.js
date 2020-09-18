@@ -10,7 +10,7 @@ const FavoritesEmptyState = () => (
 );
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
     alignContent: 'center',
     justifyContent: 'center',
