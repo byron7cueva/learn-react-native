@@ -18,6 +18,10 @@ class CoinDetailScreen extends Component {
     markets: [],
   };
 
+  componentDidMount() {
+    this.getParametters();
+  }
+
   getSymbolIcon(name) {
     if (name) {
       const symbol = name.toLowerCase().replace(' ', '-');
@@ -49,7 +53,7 @@ class CoinDetailScreen extends Component {
     this.setState({markets});
   }
 
-  componentDidMount() {
+  getParametters() {
     // Recibiendo parametros de la navegacion
     const {
       route: {

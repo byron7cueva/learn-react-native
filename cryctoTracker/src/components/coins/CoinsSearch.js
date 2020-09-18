@@ -13,7 +13,7 @@ class CoinsSearch extends Component {
     if (this.props.onChange) {
       this.props.onChange(query);
     }
-  }
+  };
 
   render() {
     return (
