@@ -1,11 +1,21 @@
 import React, {Component} from 'react';
-import {View, Text, Image, SectionList, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  SectionList,
+  FlatList,
+  StyleSheet,
+} from 'react-native';
 
+import CoinMarketItem from './CoinMarketItem';
+import Http from '../../libs/http';
 import Colors from '../../res/colors';
 
 class CoinDetailScreen extends Component {
   state = {
     coin: {},
+    markets: [],
   };
 
   getSymbolIcon(name) {
@@ -33,6 +43,12 @@ class CoinDetailScreen extends Component {
     return sections;
   }
 
+  async getMarkets(coinId) {
+    const url = `https://api.coinlore.net/api/coin/markets/?id=${coinId}`;
+    const markets = await Http.instance.get(url);
+    this.setState({markets});
+  }
+
   componentDidMount() {
     // Recibiendo parametros de la navegacion
     const {
@@ -42,10 +58,11 @@ class CoinDetailScreen extends Component {
     } = this.props;
     this.props.navigation.setOptions({title: coin.symbol});
     this.setState({coin});
+    this.getMarkets(coin.id);
   }
 
   render() {
-    const {coin} = this.state;
+    const {coin, markets} = this.state;
 
     return (
       <View style={styles.container}>
@@ -57,6 +74,7 @@ class CoinDetailScreen extends Component {
           <Text style={styles.titleText}>{coin.name}</Text>
         </View>
         <SectionList
+          style={styles.section}
           sections={this.getSections(coin)}
           keyExtractor={(item) => item}
           renderItem={({item}) => (
@@ -69,6 +87,15 @@ class CoinDetailScreen extends Component {
               <Text style={styles.sectionText}>{section.title}</Text>
             </View>
           )}
+        />
+
+        <Text style={styles.marketTitle}>Markets</Text>
+        <FlatList
+          style={styles.list}
+          keyExtractor={(item) => `${item.base}-${item.name}-${item.quote}`}
+          data={markets}
+          renderItem={({item}) => <CoinMarketItem item={item} />}
+          horizontal={true}
         />
       </View>
     );
@@ -109,6 +136,20 @@ const styles = StyleSheet.create({
   sectionText: {
     color: Colors.white,
     fontSize: 14,
+    fontWeight: 'bold',
+  },
+  section: {
+    maxHeight: 220,
+  },
+  list: {
+    maxHeight: 100,
+    paddingLeft: 16,
+  },
+  marketTitle: {
+    color: Colors.white,
+    fontSize: 16,
+    marginBottom: 16,
+    marginLeft: 16,
     fontWeight: 'bold',
   },
 });
