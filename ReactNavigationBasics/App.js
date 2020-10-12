@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
+import { createStackNavigator, HeaderStyleInterpolators  } from '@react-navigation/stack'
 import {
   Text
 } from 'react-native'
@@ -28,21 +28,33 @@ const HomeStackScreen = () => (
       headerBackImage: () => {
         return <Text>Atr</Text>
       },
+      // Cada screen se encuentra dentro de un card, con la siguiente propiedad se le puede asignar estilos
       cardStyle: {
         borderWidth: 2,
         backgroundColor: 'red'
-      }
+      },
+      headerStyleInterpolator: HeaderStyleInterpolators .forUIKit
     }}
-    headerMode='screen'
-    mode='card'
+    // Por defecto android:screen y en ios=float
+    headerMode='screen' // Para saber si esta flotando o junto con la pantalla. Tiene valores de float, screen y none
+    mode='card' // Para saber si es un card (entran pantallas desde un costado) o un modal (Entran las pantallas desde abajo)
+    // En android siempr sera card
   >
-    <HomeStack.Screen name='Home' component={Home} />
+    <HomeStack.Screen
+      name='Home'
+      component={Home}
+      options={{
+        title: 'Esta es la home'
+      }}
+    />
     <HomeStack.Screen name='About' component={About} />
     <HomeStack.Screen
       name='Profile'
       component={Profile}
       options={
+        // navigation options
         ({ route }) => ({
+          // Obteniendo parametros y asignandole al title del screen
           title: `${route.params.name} ${route.params?.age ?? '32'}`
         })
       }
@@ -50,18 +62,18 @@ const HomeStackScreen = () => (
   </HomeStack.Navigator>
 )
 
-const AppStack = createStackNavigator()
+const MainStack = createStackNavigator()
 
 // Combinando rutas
 const App: () => React$Node = () => {
 return (
   <NavigationContainer>
-    <AppStack.Navigator
+    <MainStack.Navigator
       mode='modal'
       headerMode='none'
     >
-      <AppStack.Screen name='Home' component={HomeStackScreen} />
-      <AppStack.Screen 
+      <MainStack.Screen name='Home' component={HomeStackScreen} />
+      <MainStack.Screen 
       name='Login'
       options={{
         title: 'Pantalla Login'
@@ -70,7 +82,7 @@ return (
       key='login'
       initialParams={{ name: 'Byron' }}
     />
-    </AppStack.Navigator>
+    </MainStack.Navigator>
   </NavigationContainer>
 );
 };

@@ -14,7 +14,8 @@ class Home extends Component {
     // Al ser un screen se inyecta la propiedad navigation
     // Solo navega
     //this.props.navigation.navigate('Login')
-    // Agraga al stack si la pantalla ya existe crea otra y le pone en el stack
+    // Despachando acciones
+    // Agrega al stack si la pantalla ya existe crea otra y le pone en el stack
     this.props.navigation.dispatch(
       StackActions.push('Login')
     )

@@ -8,6 +8,7 @@ import {
 
 class About extends Component {
   handlePress = () => {
+    // Enviando parametros
     // navigate(name, parametros)
     this.props.navigation.navigate('Profile', {
       name: 'Byron Cueva'

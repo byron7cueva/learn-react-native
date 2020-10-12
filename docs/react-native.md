@@ -56,7 +56,7 @@ RCTNetworking: Para la transmision de datos para que se pueda entender desde jav
 Para crear un nombre del proyecto se debe ejecutar el siguiente comando. El nombre no debe tener guiones medios.
 
 ```bash
-npx react-native init AwesomeProject
+npx react-native init NombreProyecto
 ```
 
 En IOS se debe además hacer los siguiente:
@@ -75,8 +75,19 @@ Metro es un emaquetador (bundle) de JavaScript. Toma un archivo de entrada y var
 
 ## Iniciar aplicación REact Native
 
-1.- Iniciar Metro: npx react-native start
-2.- Iniciar la aplicacion: npx react-native run-android
+1.- Iniciar Metro:
+
+```shell
+npx react-native start
+```
+
+2.- Iniciar la aplicacion:
+
+```shell
+npx react-native run-android
+```
+
+
 
 ## Realizar un enlace con un componente
 

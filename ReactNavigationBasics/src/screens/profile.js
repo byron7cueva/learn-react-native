@@ -22,7 +22,7 @@ class Profile extends Component {
   }
 
   handleChangeParams = () => {
-    // Cmabiando parametros
+    // Cambiando parametros
     this.props.navigation.setParams({
       name: 'Luis'
     })
