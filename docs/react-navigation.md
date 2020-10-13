@@ -30,3 +30,7 @@ NavigationActions
 ## Switch Navigator
 
 * Nos permite validar si estados en un estado A o un estado B de la aplicación.
+
+## Drawer Navigator
+
+* Es un menu que sale de un costado del teléfono.
