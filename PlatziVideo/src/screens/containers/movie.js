@@ -12,6 +12,16 @@ import { Details } from '../../video/components/details'
 
 class Movie extends Component {
 
+  static navigationOptions = ({ navigation }) => ({
+    header: () => (
+      <Header>
+        <Close onPress={() => {
+          navigation.goBack();
+        }} />
+      </Header>
+    )
+  })
+
   state = {
     // Insanciando un valor que puede cambiar
     opacity: new Animated.Value(0)
@@ -44,11 +54,6 @@ class Movie extends Component {
         }}
       >
         <MovieLayout>
-          <Header>
-            <Close
-              onPress={this.closeVideo}
-            />
-          </Header>
           <Player />
           <Details {...this.props.selectedMovie} />
         </MovieLayout>

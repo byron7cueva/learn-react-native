@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
   FlatList
 } from  'react-native'
+import { CommonActions } from '@react-navigation/native'
+import { withNavigation } from '@react-navigation/compat'
+
 import { Layout } from '../components/layout'
 import { Empty } from '../components/empty'
 import { VerticalSeparator } from '../components/vertical-separator'
 import { Suggestion } from '../components/suggestion'
-import { connect } from 'react-redux'
 
 class SuggestionList extends Component {
   renderItem = ({ item }) => (
@@ -39,6 +42,12 @@ class SuggestionList extends Component {
         movie: item
       }
     })
+
+    this.props.navigation.dispatch(
+      CommonActions.navigate({
+        name: 'Movie'
+      })
+    )
   }
 
   render() {
@@ -65,7 +74,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const connected = connect(mapStateToProps)(SuggestionList)
+const connected = connect(mapStateToProps)(withNavigation(SuggestionList))
 
 export {
   connected as SuggestionList

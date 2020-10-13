@@ -1,7 +1,6 @@
 import React from 'react'
 import {
   View,
-  Text,
   Image,
   StyleSheet,
   SafeAreaView
@@ -10,7 +9,7 @@ import {
 // SafeAreaView Renderiza el contenido en un area segura
 
 export const Header = (props) => (
-  <SafeAreaView>
+  <SafeAreaView style={styles.statusBar}>
     <View style={styles.container}>
       <Image
         source={require('../../../assets/logo.png')}
@@ -39,5 +38,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-end'
+  },
+  statusBar: {
+    backgroundColor: 'white'
   }
 })
