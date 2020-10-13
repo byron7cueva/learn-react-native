@@ -26,3 +26,7 @@ NavigationActions
   * back(): Regresar una pantalla.
   * setParams(): Cambiar o agregar los parámetros.
   * init(): Setear el estado inicial.
+
+## Switch Navigator
+
+* Nos permite validar si estados en un estado A o un estado B de la aplicación.

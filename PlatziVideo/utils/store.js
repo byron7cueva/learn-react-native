@@ -1,5 +1,6 @@
 import { createStore } from 'redux'
-import { videosReducer } from './reducers/videos'
+//import { videosReducer } from './reducers/videos'
+import { reducer } from './reducers'
 import {
   persistStore,
   persistReducer
@@ -28,7 +29,7 @@ const persistConfig = {
 }
 
 // creando el reducer persistente
-const persistedReducer = persistReducer(persistConfig, videosReducer)
+const persistedReducer = persistReducer(persistConfig, reducer)
 
 // Creando store a traves del reducer persistente
 const store = createStore(persistedReducer)

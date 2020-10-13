@@ -70,7 +70,7 @@ class SuggestionList extends Component {
 const mapStateToProps = (state) => {
   // Que es lo que se va mapear del estado a las props
   return {
-    list: state.suggestionList
+    list: state.videos.suggestionList
   }
 }
 

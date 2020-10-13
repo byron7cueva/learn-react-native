@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { connect } from 'react-redux'
 import {
   Text,
   SafeAreaView,
@@ -9,7 +10,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 
-export const Profile = () => {
+const Profile = (props) => {
   const navigation = useNavigation()
 
   const handleFocus = () => {
@@ -20,6 +21,14 @@ export const Profile = () => {
     }
   }
 
+  const handleLogout = () => {
+    props.dispatch({
+      type: 'REMOVE_USER'
+    })
+    navigation.navigate('Loading')
+  }
+
+  //componentDidMount
   useEffect(() => {
     navigation.addListener('focus', handleFocus)
     return () => {
@@ -29,10 +38,11 @@ export const Profile = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Nombre de usuario</Text>
+      <Text>{props.user.username}</Text>
       <Button
         title="Cerrar sesión"
         color="#67a52e"
+        onPress={handleLogout}
       />
     </SafeAreaView>
   )
@@ -45,3 +55,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   }
 })
+
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  }
+}
+
+const connected = connect(mapStateToProps)(Profile)
+
+export {
+  connected as Profile
+}

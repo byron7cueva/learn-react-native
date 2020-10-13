@@ -70,7 +70,7 @@ class Category extends Component {
 const mapStateToProps = (state) => {
   // Que es lo que se va mapear del estado a las props
   return {
-    list: state.categoryList
+    list: state.videos.categoryList
   }
 }
 

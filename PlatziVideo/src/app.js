@@ -58,7 +58,7 @@ class AppLayout extends Component {
 
 const mapStateToProps = (state)  => {
   return {
-    selectedMovie: state.selectedMovie
+    selectedMovie: state.videos.selectedMovie
   }
 }
 

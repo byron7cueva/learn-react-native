@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
@@ -9,10 +10,13 @@ import { Category } from './screens/containers/category'
 import { About } from './screens/containers/about'
 import { Lucky } from './screens/containers/lucky'
 import { Profile } from './screens/containers/profile'
+import { Login } from './screens/containers/login'
+import { Loading } from './screens/containers/loading'
 import { Icon } from './sections/components/icon'
 
 const Main = createStackNavigator()
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
+const App = createStackNavigator()
 
 const MainNavigator = () => (
     <Main.Navigator
@@ -26,7 +30,7 @@ const MainNavigator = () => (
     </Main.Navigator>
 )
 
-export const AppNavigator = () => (
+const TabNavigator = () => (
     <Tab.Navigator
         tabBarOptions={{
             activeTintColor: 'white',
@@ -66,4 +70,14 @@ export const AppNavigator = () => (
             }}
         />
     </Tab.Navigator>
+)
+
+export const AppNavigator = () => (
+    <App.Navigator
+        initialRouteName='Loading'
+    >
+        <App.Screen name='Loading' component={Loading} />
+        <App.Screen name='Login' component={Login} />
+        <App.Screen name='App' component={TabNavigator} />
+    </App.Navigator>
 )

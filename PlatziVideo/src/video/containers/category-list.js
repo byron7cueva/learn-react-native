@@ -64,7 +64,7 @@ class CategoryList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    list: state.categoryList
+    list: state.videos.categoryList
   }
 }
 
