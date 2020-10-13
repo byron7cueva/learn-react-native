@@ -2,16 +2,21 @@ import React from 'react'
 import {
   ImageBackground,
   Text,
-  StyleSheet
+  StyleSheet,
+  TouchableOpacity
 } from 'react-native'
 
 export const Category = (props) => (
-  <ImageBackground
-    source={{uri: props.background_image}}
-    style={styles.wrapper}
+  <TouchableOpacity
+    onPress={props.onPress}
   >
-    <Text style={styles.genre}>{props.genres[0]}</Text>
-  </ImageBackground>
+    <ImageBackground
+      source={{uri: props.background_image}}
+      style={styles.wrapper}
+    >
+      <Text style={styles.genre}>{props.genres[0]}</Text>
+    </ImageBackground>
+  </TouchableOpacity>
 )
 
 const styles = StyleSheet.create({

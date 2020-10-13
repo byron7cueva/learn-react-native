@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import {
   FlatList
 } from 'react-native'
+import { CommonActions } from '@react-navigation/native'
+import { withNavigation } from '@react-navigation/compat'
+
 import { LayoutBackground } from '../components/layout-background'
 import { Empty } from '../components/empty'
 import { HorizontalSeparator } from '../components/horizontal-separator'
@@ -10,6 +13,12 @@ import { Category } from '../components/category'
 import { connect } from 'react-redux'
 
 class CategoryList extends Component {
+  renderItem = ({ item }) => {
+    return (
+      <Category {...item } onPress={() => { this.viewCategory(item) }} />
+    )
+  }
+
   keyExtractor(item) {
     return item.id.toString()
   }
@@ -26,9 +35,14 @@ class CategoryList extends Component {
     )
   }
 
-  renderItem({ item }) {
-    return (
-      <Category {...item } />
+  viewCategory(item) {
+    this.props.navigation.dispatch(
+      CommonActions.navigate({
+        name: 'Category',
+        params: {
+          genre: item.genres[0]
+        }
+      })
     )
   }
 
@@ -54,7 +68,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const connected = connect(mapStateToProps)(CategoryList)
+const connected = connect(mapStateToProps)(withNavigation(CategoryList))
 
 export {
    connected as CategoryList
