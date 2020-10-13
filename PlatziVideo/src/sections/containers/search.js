@@ -4,6 +4,8 @@ import {
   StyleSheet
 } from 'react-native'
 import { connect } from 'react-redux'
+import { CommonActions } from '@react-navigation/native'
+import { withNavigation } from '@react-navigation/compat'
 
 import api from '../../../utils/api'
 
@@ -20,6 +22,11 @@ class Search extends Component {
         movie
       }
     })
+    this.props.navigation.dispatch(
+      CommonActions.navigate({
+        name: 'Movie'
+      })
+    )
   }
 
   handleChangeText = (text) => {
@@ -52,7 +59,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const connected = connect(null)(Search)
+const connected = connect(null)(withNavigation(Search))
 
 export {
   connected as Search
