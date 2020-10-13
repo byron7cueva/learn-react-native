@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { StatusBar, Platform } from 'react-native'
 
 import { Header } from '../../sections/components/header'
 import { SuggestionList } from '../../video/containers/suggestion-list'
@@ -16,6 +17,8 @@ class Home extends Component {
   }
 
   async componentDidMount() {
+    this.props.navigation.addListener('focus', this.handleFocus)
+
     const categoryList = await api.getMovies()
     // Al connectar el componente a redux se crea la propiedad dispatch sobre props
     this.props.dispatch({
@@ -32,6 +35,17 @@ class Home extends Component {
         suggestionList
       }
     })
+  }
+
+  componentWillUnmount() {
+    this.props.navigation.removeListener('focus', this.handleFocus)
+  }
+
+  handleFocus() {
+    StatusBar.setBarStyle('dark-content')
+    if (Platform.OS === 'android') {
+      StatusBar.setBackgroundColor('white')
+    }
   }
 
   render () {
