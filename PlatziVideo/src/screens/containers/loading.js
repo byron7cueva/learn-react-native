@@ -9,12 +9,9 @@ const Loading = (props) => {
 
   // ComponentDidUpdate
   useEffect(() => {
-    console.log('User', props.user)
     if (props.user) {
-      console.log('Navegando a APP')
       navigation.navigate('App')
     } else {
-      console.log('Navgando a LOGIN')
       navigation.navigate('Login')
     }
   })

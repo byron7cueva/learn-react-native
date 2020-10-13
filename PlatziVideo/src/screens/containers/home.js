@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { StatusBar, Platform } from 'react-native'
+import { StatusBar, Platform, BackHandler } from 'react-native'
+import { CommonActions } from '@react-navigation/native'
 
 import { Header } from '../../sections/components/header'
 import { SuggestionList } from '../../video/containers/suggestion-list'
@@ -14,6 +15,12 @@ class Home extends Component {
 
   static navigationOptions = {
     header: Header
+  }
+
+  handleBackPress = () => {
+    this.props.navigation.dispatch(
+      CommonActions.goBack()
+    )
   }
 
   async componentDidMount() {
@@ -35,10 +42,13 @@ class Home extends Component {
         suggestionList
       }
     })
+
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress)
   }
 
   componentWillUnmount() {
     this.props.navigation.removeListener('focus', this.handleFocus)
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress)
   }
 
   handleFocus() {
